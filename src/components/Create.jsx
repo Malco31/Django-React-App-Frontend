@@ -22,7 +22,7 @@ const Create = () => {
 
   const schema = yup.object({
     name: yup.string().required('Please enter a name.'),
-    price: yup.number().positive().integer().required('Please enter a valid price.').min(0),
+    price: yup.number().positive().required('Please enter a valid price.').min(0),
     is_necessity: yup.boolean(),
     start_date: yup.date().required('Please enter a date.'),
   })
