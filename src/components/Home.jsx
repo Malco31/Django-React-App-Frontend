@@ -1,5 +1,5 @@
 import {React, useEffect, useMemo, useState} from 'react'
-import AxiosInstance from './Axios'
+import AxiosInstance from './Axios';
 import { MaterialReactTable } from 'material-react-table';
 import { Checkbox } from '@mui/material';
 import Dayjs from 'dayjs';
@@ -10,20 +10,30 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-  const [myData, setMydata] = useState()
+  const [myData, setMydata] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const GetData = () => {
-    AxiosInstance.get(`project/`).then((res) => {
-      setMydata(res.data)
-      console.log(res.data)
-      setLoading(false)
-    })
-  }
+  // Function to fetch CSRF token and then data
+  const fetchData = async () => {
+    try {
+      // Ensure we get the CSRF token first
+      // await AxiosInstance.get("get-csrf-token/");
+
+      // Now, fetch the data
+      const response = await AxiosInstance.get("project/", {
+        withCredentials: true,
+      });
+      setMydata(response.data);
+      console.log(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    GetData();
-  },[]) // GetData is only run on the initial render []
+    fetchData(); // Run once when the component is mounted
+  }, []); // Empty dependency array ensures this runs once
   
   
   

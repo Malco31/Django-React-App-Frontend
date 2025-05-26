@@ -29,23 +29,24 @@ const Create = () => {
   .required()
 
   const {handleSubmit, control} = useForm({defaultValues:defaultValues, resolver: yupResolver(schema)})
-    const submission = (data) => 
-    {  
+    const submission = async (data) => {  
+      try {
+        console.log("Token used:", localStorage.getItem('access_token'));
         const StartDate = Dayjs(data.start_date["$d"]).format("YYYY-MM-DD")
-        AxiosInstance.post( `project/`,{
+
+        const response = await AxiosInstance.post('project/', {
             name: data.name,
             price: data.price,
             is_necessity: !!data.is_necessity,
-            start_date: StartDate
-        }).then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.error("Error:", error.response.data); // detailed error response
-          }).then(res => {
-            navigate(`/`)
-          });
-    }
+            start_date: StartDate,
+        });
+        
+        console.log(response);
+        navigate(`/`);
+      } catch (error) {
+        console.error("Error", error?.response?.data || error);
+      }
+    };
 
   return (
     <div>

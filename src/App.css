@@ -1,1 +1,32 @@
+.loginBackground, .registerBackground {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #020024;
+    background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+}
 
+.loginForm, .registerForm {
+    background-color: white;
+    padding: 20px;
+    min-width: 200px;
+    height: 70%;
+    width: 30%;
+    border: 1px solid #333;
+}
+
+.itemBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    height: 80px;
+}
+
+.title {
+    font-size: 30px;
+    color: #333;
+}
