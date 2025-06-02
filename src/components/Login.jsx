@@ -21,7 +21,7 @@ const Login = () => {
         try {
             
 
-            const response = await AxiosInstance.post("token/", {
+            const response = await AxiosInstance.post("api/token/", {
                 username: data.username,
                 password: data.password,
             });
