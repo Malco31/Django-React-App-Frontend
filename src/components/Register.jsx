@@ -10,10 +10,12 @@ import AuthTextField from './forms/AuthTextField';
 
 const Register = () =>{
 
-    const navigate = useNavigate()
-    const { handleSubmit, control } = useForm()
+    const navigate = useNavigate();
+    const { handleSubmit, control } = useForm();
+    const [loading, setLoading] = useState(false);
 
     const submission = async (data) => {
+        setLoading(true);
         try {
             AxiosInstance.post(`api/register/`, {
                 username: data.username,
