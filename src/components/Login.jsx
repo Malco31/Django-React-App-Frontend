@@ -30,7 +30,7 @@ const Login = () => {
             localStorage.setItem('refresh_token', response.data.refresh);
             
                 // This will verify if our authentication is working
-            const authCheck = await AxiosInstance.get("auth-check/", {withCredentials: true});
+            const authCheck = await AxiosInstance.get("api/auth-check/", {withCredentials: true});
             console.log("Auth check successful:", authCheck.data);
             
             
