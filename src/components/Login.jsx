@@ -19,40 +19,21 @@ const Login = () => {
         setError('');
 
         try {
-            // fetch a fresh csrf token before login
-            // await AxiosInstance.get("get-csrf-token/", { withCredentials: true });
-            // console.log("Document Cookies:", document.cookie);
-            // const csrfToken = getCookie("csrftoken");
-            // console.log("CSRF Token:", csrfToken); 
-
-            // if (!csrfToken) {
-            //     console.error("No CSRF token found after fetch attempt");
-            //     setError("Authentication error: No CSRF token available. Please refresh the page.");
-            //     setLoading(false);
-            //     return;
-            // }
+            
 
             const response = await AxiosInstance.post("token/", {
                 username: data.username,
                 password: data.password,
             });
 
-            localStorage.setItem('access', response.data.success);
-            localStorage.setItem('refresh', response.data.refresh);
-
-            // console.log("Login Response:", response); 
-            // AxiosInstance.defaults.headers.common["X-CSRFToken"] = getCookie("csrftoken");
-            // await AxiosInstance.get("get-csrf-token/", { withCredentials: true });
-            // console.log("Document Cookies:", document.cookie);
-            // const csrfToken = await fetchCSRFToken();
-            // console.log('CSRF token after login:', csrfToken);
+            localStorage.setItem('access_token', response.data.success);
+            localStorage.setItem('refresh_token', response.data.refresh);
             
                 // This will verify if our authentication is working
             const authCheck = await AxiosInstance.get("auth-check/", {withCredentials: true});
             console.log("Auth check successful:", authCheck.data);
             
-            console.log("Document Cookies:", document.cookie);
-                // If we got here, authentication is working properly
+            
             navigate('/');
         } catch (error) {
             console.error("Login failed:", error);
@@ -73,9 +54,6 @@ const Login = () => {
             setLoading(false);
         }  
                 
-        AxiosInstance.defaults.headers.common["X-CSRFToken"] = getCookie("csrftoken");
-        await AxiosInstance.get("get-csrf-token/", { withCredentials: true });
-        console.log("Document Cookies:", document.cookie);   
     };
 
     return(

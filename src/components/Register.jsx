@@ -30,7 +30,7 @@ const Register = () =>{
             localStorage.setItem('refresh_token', refresh);
             AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${access}`;
     
-            navigate(`/`);     
+            navigate(`/login`);     
         } catch (error) {
             console.error("Registration or login failed:", error);
         }
