@@ -26,7 +26,7 @@ const Login = () => {
                 password: data.password,
             });
 
-            localStorage.setItem('access_token', response.data.success);
+            localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             
                 // This will verify if our authentication is working

@@ -66,8 +66,8 @@ const Register = () =>{
                     </Box>
 
                     <Box className={"itemBox"}>
-                        <Button variant="contained" type="submit">
-                            Register
+                        <Button variant="contained" type="submit" color="primary" disabled={loading}>
+                            {loading ? "Registering..." : "Register"}
                         </Button>
                     </Box>
 
