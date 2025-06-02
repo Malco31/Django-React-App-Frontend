@@ -15,12 +15,12 @@ const Register = () =>{
 
     const submission = async (data) => {
         try {
-            AxiosInstance.post(`register/`, {
+            AxiosInstance.post(`api/register/`, {
                 username: data.username,
                 password: data.password,
             });
     
-            const response = await AxiosInstance.post(`token/`, {
+            const response = await AxiosInstance.post(`api/token/`, {
                 username: data.username,
                 password: data.password
             });
