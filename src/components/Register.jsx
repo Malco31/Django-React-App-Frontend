@@ -33,7 +33,9 @@ const Register = () =>{
             navigate(`/login`);     
         } catch (error) {
             console.error("Registration or login failed:", error);
-        }
+        } finally {
+            setLoading(false);
+        } 
     }
         
 
