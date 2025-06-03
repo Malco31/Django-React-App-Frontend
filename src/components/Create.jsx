@@ -34,7 +34,7 @@ const Create = () => {
         console.log("Token used:", localStorage.getItem('access_token'));
         const StartDate = Dayjs(data.start_date["$d"]).format("YYYY-MM-DD")
 
-        const response = await AxiosInstance.post('project/', {
+        const response = await AxiosInstance.post('api/project/', {
             name: data.name,
             price: data.price,
             is_necessity: !!data.is_necessity,

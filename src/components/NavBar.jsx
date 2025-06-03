@@ -29,6 +29,18 @@ export default function Navbar(props) {
     setOpen(!open)
   }
 
+  const handleLogout = async () => {
+    try {
+      await fetch("api/logout", {
+        method: 'POST',
+        credentials: 'include',
+      });
+      window.location.href = 'api/login'; // Redirect to login page
+    } catch (err) {
+      console.error("Logout failed:", err)
+    }
+  };
+
   const myDrawer = (
     <div>
         <Toolbar />
@@ -86,6 +98,17 @@ export default function Navbar(props) {
           <Typography variant="h6" noWrap component="div">
             Income Manager Application
           </Typography>
+
+          <button onClick={handleLogout} style={{
+            background: 'transparent',
+            color: 'white',
+            border: '1px solid white',
+            padding: '6px 12px',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}>
+            Logout
+          </button>
         </Toolbar>
       </AppBar>
 

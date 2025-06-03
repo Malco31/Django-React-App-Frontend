@@ -19,7 +19,7 @@ const About = () => {
   
 
   useEffect(() => {
-    AxiosInstance.get('monthly_income/')
+    AxiosInstance.get('api/monthly_income/')
       .then(response => {
         console.log(response)
         setIncomeData(response.data);
@@ -43,7 +43,7 @@ const About = () => {
 
     const submission = (data) => 
     {  
-        AxiosInstance.put( `monthly_income/${monthlyIncomeId}/`,{
+        AxiosInstance.put( `api/monthly_income/${monthlyIncomeId}/`,{
             income: data.monthly_income,
         }).then(response => {
             console.log(response);

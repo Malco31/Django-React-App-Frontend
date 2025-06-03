@@ -20,7 +20,7 @@ const Home = () => {
       // await AxiosInstance.get("get-csrf-token/");
 
       // Now, fetch the data
-      const response = await AxiosInstance.get("project/", {
+      const response = await AxiosInstance.get("api/project/", {
         withCredentials: true,
       });
       setMydata(response.data);
