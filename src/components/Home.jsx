@@ -13,14 +13,11 @@ const Home = () => {
   const [myData, setMydata] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Function to fetch CSRF token and then data
+  // Fetch the data
   const fetchData = async () => {
     try {
-      // Ensure we get the CSRF token first
-      // await AxiosInstance.get("get-csrf-token/");
-
-      // Now, fetch the data
-      const response = await AxiosInstance.get("api/project/", {
+      // IN PRODUCTION ADD "api/" TO GET
+      const response = await AxiosInstance.get("project/", {
         withCredentials: true,
       });
       setMydata(response.data);
@@ -82,12 +79,23 @@ const Home = () => {
           enableRowActions
           renderRowActions={({row}) => (
             <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: '8px'}}>
-
+              {/* // IN PRODUCTION ADD "api/" TO edit */}
               <IconButton color="secondary" component = {Link} to={`edit/${row.original.id}`}>
+              
                 <EditIcon />
               </IconButton>
-
-              <IconButton color="error" component = {Link} to={`delete/${row.original.id}`}>
+              {/* // IN PRODUCTION ADD "api/" TO delete */}
+              <IconButton color="error" onClick={async () => {
+                try {
+                  await AxiosInstance.delete(`project/${row.original.id}/`, {
+                    withCredentials: true,
+                  });
+                  fetchData();
+                } catch (err) {
+                  console.error("Error deleting project:", err)
+                }
+              }}>
+              
                 <DeleteIcon />
               </IconButton>
             </Box>

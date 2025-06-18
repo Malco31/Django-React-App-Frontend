@@ -13,9 +13,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
+import { flexRender } from 'material-react-table';
 
 
 export default function Navbar(props) {
@@ -31,11 +33,13 @@ export default function Navbar(props) {
 
   const handleLogout = async () => {
     try {
+      // IN PRODUCTION ADD "api/" TO GET
       await fetch("api/logout", {
         method: 'POST',
         credentials: 'include',
       });
-      window.location.href = 'api/login'; // Redirect to login page
+      
+      window.location.href = '/login'; // Redirect to login page
     } catch (err) {
       console.error("Logout failed:", err)
     }
@@ -59,9 +63,9 @@ export default function Navbar(props) {
               <ListItem disablePadding>
                 <ListItemButton component={Link} to="/about" selected={"/about" === path}>
                   <ListItemIcon>
-                    <InfoIcon/>
+                    <AnalyticsIcon/>
                   </ListItemIcon>
-                  <ListItemText primary={"About"} />
+                  <ListItemText primary={"Analytics"} />
                 </ListItemButton>
               </ListItem>
 
@@ -85,8 +89,8 @@ export default function Navbar(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
-
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center'}}>
             <IconButton 
                 color = "inherit"
                 onClick={changeOpenStatus}
@@ -95,19 +99,19 @@ export default function Navbar(props) {
                 <MenuIcon/>
             </IconButton>
 
-          <Typography variant="h6" noWrap component="div">
-            Income Manager Application
-          </Typography>
-
+            <Typography variant="h6" noWrap component="div">
+              Income Manager Application
+            </Typography>
+          </Box>
           <button onClick={handleLogout} style={{
-            background: 'transparent',
-            color: 'white',
-            border: '1px solid white',
-            padding: '6px 12px',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}>
-            Logout
+              background: 'transparent',
+              color: 'white',
+              border: '1px solid white',
+              padding: '6px 12px',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}>
+              Logout
           </button>
         </Toolbar>
       </AppBar>

@@ -11,22 +11,30 @@ import AuthTextField from './forms/AuthTextField';
 const Register = () =>{
 
     const navigate = useNavigate();
-    const { handleSubmit, control } = useForm();
+    const { handleSubmit, control } = useForm({
+        defaultValues: {
+          username: '',
+          password: '',
+        }
+    });
+
     const [loading, setLoading] = useState(false);
 
     const submission = async (data) => {
         setLoading(true);
         try {
-            AxiosInstance.post(`api/register/`, {
+            // IN PRODUCTION ADD "api/" TO POST
+            console.log("Sending to register:", data)
+            await AxiosInstance.post(`register/`, {
                 username: data.username,
                 password: data.password,
             });
-    
-            const response = await AxiosInstance.post(`api/token/`, {
+            // IN PRODUCTION ADD "api/" TO POST
+            const response = await AxiosInstance.post(`token/`, {
                 username: data.username,
                 password: data.password
             });
-    
+            
             const { access, refresh } = response.data;
             localStorage.setItem('access_token', access);
             localStorage.setItem('refresh_token', refresh);

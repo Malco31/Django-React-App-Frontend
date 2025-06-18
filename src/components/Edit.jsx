@@ -41,7 +41,7 @@ const Edit = () => {
     const submission = (data) => 
     {  
         const StartDate = Dayjs(data.start_date["$d"]).format("YYYY-MM-DD")
-        AxiosInstance.put( `project/${MyId}/`,{
+        AxiosInstance.put(`project/${MyId}/`,{
             name: data.name,
             price: data.price,
             is_necessity: data.is_necessity,

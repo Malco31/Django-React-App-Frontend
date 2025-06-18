@@ -17,8 +17,17 @@ const AxiosInstance = axios.create({
 });
 
 
+// Response interceptor
 
-
+AxiosInstance.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response && error.response.status === 401) {
+            window.location.href = '/login';
+        }
+        return Promise.reject(error);
+    }
+);
 
 
 // Request interceptor with async token fetching
@@ -26,8 +35,14 @@ const AxiosInstance = axios.create({
 AxiosInstance.interceptors.request.use(
     config => {
         const token = localStorage.getItem('access_token');
-        if (token) {
+        const isPublicRoute = config.url.includes('register') || config.url.includes('token');
+        if (token && !isPublicRoute) {
             config.headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        const isProduction = import.meta.env.MODE === 'production';
+        if (isProduction && !config.url.startsWith('api/')) {
+            config.url = `api/${config.url}`;
         }
         return config;
     },
