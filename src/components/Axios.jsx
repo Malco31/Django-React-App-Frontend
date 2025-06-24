@@ -8,7 +8,7 @@ const mybaseUrl = isDevelopment ? import.meta.env.VITE_API_BASE_URL_LOCAL : impo
 
 const AxiosInstance = axios.create({
     baseURL: mybaseUrl,
-    timeout: 20000, //ensures that there is latency before we get our posts
+    timeout: 20000, //ensures that there is latency before we get posts
     headers: {
         "Content-Type": "application/json",
         accept: "application/json",
@@ -30,7 +30,7 @@ AxiosInstance.interceptors.response.use(
 );
 
 
-// Request interceptor with async token fetching
+// Request interceptor 
 
 AxiosInstance.interceptors.request.use(
     config => {

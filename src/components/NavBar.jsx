@@ -33,7 +33,6 @@ export default function Navbar(props) {
 
   const handleLogout = async () => {
     try {
-      // IN PRODUCTION ADD "api/" TO GET
       await fetch("api/logout", {
         method: 'POST',
         credentials: 'include',

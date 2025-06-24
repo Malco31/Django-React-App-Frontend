@@ -16,7 +16,6 @@ const Home = () => {
   // Fetch the data
   const fetchData = async () => {
     try {
-      // IN PRODUCTION ADD "api/" TO GET
       const response = await AxiosInstance.get("project/", {
         withCredentials: true,
       });
@@ -79,12 +78,12 @@ const Home = () => {
           enableRowActions
           renderRowActions={({row}) => (
             <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: '8px'}}>
-              {/* // IN PRODUCTION ADD "api/" TO edit */}
+         
               <IconButton color="secondary" component = {Link} to={`edit/${row.original.id}`}>
               
                 <EditIcon />
               </IconButton>
-              {/* // IN PRODUCTION ADD "api/" TO delete */}
+             
               <IconButton color="error" onClick={async () => {
                 try {
                   await AxiosInstance.delete(`project/${row.original.id}/`, {

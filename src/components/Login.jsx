@@ -20,7 +20,6 @@ const Login = () => {
 
         try {
             
-            // IN PRODUCTION ADD "api/" TO POST
             const response = await AxiosInstance.post("token/", {
                 username: data.username,
                 password: data.password,
@@ -29,8 +28,7 @@ const Login = () => {
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             
-                // This will verify if our authentication is working
-                // IN PRODUCTION ADD "api/" TO GET
+                // This will verify if authentication is working
             const authCheck = await AxiosInstance.get("auth-check/", {withCredentials: true});
             console.log("Auth check successful:", authCheck.data);
             

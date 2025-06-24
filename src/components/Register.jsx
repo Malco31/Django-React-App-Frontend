@@ -23,13 +23,13 @@ const Register = () =>{
     const submission = async (data) => {
         setLoading(true);
         try {
-            // IN PRODUCTION ADD "api/" TO POST
+           
             console.log("Sending to register:", data)
             await AxiosInstance.post(`register/`, {
                 username: data.username,
                 password: data.password,
             });
-            // IN PRODUCTION ADD "api/" TO POST
+           
             const response = await AxiosInstance.post(`token/`, {
                 username: data.username,
                 password: data.password
